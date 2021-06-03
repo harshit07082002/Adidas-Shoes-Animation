@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animate</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main">
+        <div class="card">
+            <div class="circle"></div>
+            <img id="img1" src="/shoes.png" alt="image" height="300px">
+            <h1>Nike Air Max</h1>
+            <h2>Just Do It!!</h2>
+            <h3>Purchase</h3>
+        </div>
+    </div>
+    <script>
+        
+        const card=document.querySelector('.card');
+        document.querySelector('.main').addEventListener('mousemove',function(e){
+           
+            // transform: perspective(500px) translateZ(200px);
+        //    .style.transform="translateZ(20050px)";
+          
+            var x=e.clientX;
+          var y=e.clientY;
+          console.log(x,y);
+          
+          var xAxis=((window.innerWidth/2)-x)/20;
+          var yAxis=((window.innerHeight/2)-y)/20;
+          card.style.transform="rotateX("+yAxis+"deg)"+"rotateY("+xAxis+"deg)";
+
+        });
+        document.querySelector('.main').addEventListener("mouseenter", (e) => {
+            card.style.transition="none";
+  //Popout
+  document.querySelector('h1').style.transform = " perspective(200px) translateZ(110px)";
+  document.querySelector('h2').style.transform = " perspective(200px) translateZ(70px)";
+  document.querySelector('h3').style.transform = " perspective(200px) translateZ(50px)";
+  document.querySelector('#img1').style.transform = "rotateZ(30deg) perspective(250px) translateZ(90px)";
+
+//   sneaker.style.transform = "translateZ(200px) rotateZ(-45deg)";
+//   description.style.transform = "translateZ(125px)";
+//   sizes.style.transform = "translateZ(100px)";
+//   purchase.style.transform = "translateZ(75px)";
+});
+        document.querySelector('.main').addEventListener('mouseleave',function(){
+            card.style.transition="all 1s ease";
+            document.querySelector('#img1').style.transition="all 1s ease";
+            card.style.transform="rotateX("+0+"deg)"+"rotateY("+0+"deg)";
+           document.querySelector('#img1').style.transform="translateZ(0px) rotateZ(0deg)";
+           document.querySelector('h1').style.transform=" translateZ(0px)";
+           document.querySelector('h2').style.transform=" translateZ(0px)";
+           document.querySelector('h3').style.transform=" translateZ(0px)";
+         
+        });
+       
+    </script>
+</body>
+</html>
